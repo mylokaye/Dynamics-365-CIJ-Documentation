@@ -24,11 +24,12 @@ This saves time and keeps your targeting consistent.
 | Term | Simple Meaning |
 |-----|------|
 | Marketing List | A saved group of people (contacts, leads, or accounts) |
-| Member | A person or company inside the list |
+| Subscription List | Not used in Sales or Marketing) |
+| Member | A Contact or Account inside the list |
 | Static List | A fixed list that you manually control |
 | Dynamic List | A list that updates automatically based on rules |
 | Contact | A known person (usually already engaged) |
-| Lead | A potential customer not yet qualified |
+| Lead | A potential Account not yet qualified |
 | Account | A company or organisation |
 
 **Important:**  
@@ -153,7 +154,7 @@ You can now:
 
 ### Scenario: Targeting retail prospects in the UK
 
-You want to call potential retail customers this quarter.
+You want to call potential retail Accounts this quarter.
 
 **Steps:**
 1. Create list:  

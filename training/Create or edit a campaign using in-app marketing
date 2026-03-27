@@ -1,0 +1,220 @@
+# Create & Manage a Campaign in Dynamics 365 (Sales)
+
+---
+
+## 1. High-Level Overview
+
+### What this is  
+A **campaign** is how you plan, run, and track a marketing effort in Dynamics 365.  
+
+It connects:
+- Your **target audience** (marketing lists)  
+- Your **activities** (emails, calls, tasks)  
+- Your **results** (responses, costs, performance)
+
+### Why it matters (for sales)  
+- Keeps outreach organised instead of scattered  
+- Helps you track what’s working (and what isn’t)  
+- Aligns sales and marketing on the same activity  
+
+### What problem it solves  
+Without campaigns, outreach is random and hard to track.  
+With campaigns, everything sits in one place: audience, actions, and results.  [oai_citation:0‡Microsoft Learn](https://learn.microsoft.com/is-is/dynamics365/sales/create-edit-campaign-using-app-marketing-sales?utm_source=chatgpt.com)  
+
+---
+
+## 2. Word Glossary
+
+| Term | Simple Meaning |
+|-----|------|
+| Campaign | A planned set of sales/marketing activities |
+| Campaign Activity | A specific action (e.g. email, call, task) |
+| Planning Activity | Prep work before launch (e.g. create content) |
+| Marketing List | The audience you are targeting |
+| Channel | How you contact people (email, phone, etc.) |
+| Budget | Planned cost of the campaign |
+| Response Rate | How many people engage or reply |
+
+**Important:**  
+- A **campaign = the container**  
+- Activities = what you actually *do*  
+
+---
+
+## 3. Quick Wins / Need to Know
+
+- Campaign = **plan + audience + actions + tracking**
+- You must attach at least **one marketing list**
+- Activities are where the real work happens (calls, emails)
+- Campaigns track **costs and performance**
+- Large campaigns can take time to send (not instant)  [oai_citation:1‡Microsoft Learn](https://learn.microsoft.com/is-is/dynamics365/sales/create-edit-campaign-using-app-marketing-sales?utm_source=chatgpt.com)  
+
+---
+
+## 4. Step-by-Step Guide
+
+### Goal: Create a simple campaign and attach a target audience
+
+---
+
+### Step 1: Go to Campaigns
+- Open Dynamics 365  
+- Navigate to **Campaigns**  
+  *(or open from a Marketing List)*
+
+---
+
+### Step 2: Create a New Campaign
+- Click **New**
+- Enter:
+  - **Name** → Be specific (e.g. *“Q2 Retail Outreach”*)  
+  - **Type** → Optional, keep simple  
+  - **Expected Response Rate** → Rough estimate  
+
+---
+
+### Step 3: Set Dates
+- Add:
+  - Start date  
+  - End date  
+
+Keep this realistic. It helps with tracking later.
+
+---
+
+### Step 4: Add Budget (Optional but useful)
+- Enter:
+  - Budget  
+  - Any extra costs  
+
+The system will track total spend automatically based on activities.  [oai_citation:2‡Microsoft Learn](https://learn.microsoft.com/is-is/dynamics365/sales/create-edit-campaign-using-app-marketing-sales?utm_source=chatgpt.com)  
+
+---
+
+### Step 5: Save the Campaign
+- Click **Save**
+
+Now you have a campaign shell.
+
+---
+
+### Step 6: Add Your Target Audience
+- Go to **Marketing Lists**
+- Click **Add Existing Marketing List**
+- Select your list  
+
+This connects your campaign to real people.
+
+---
+
+### Step 7: Add Activities (What you actually do)
+
+You have two types:
+
+#### A. Planning Activities (before launch)
+Examples:
+- Prepare email content  
+- Decide channels  
+- Brief marketing  
+
+#### B. Campaign Activities (actual outreach)
+Examples:
+- Send emails  
+- Create call tasks  
+- Schedule follow-ups  
+
+These activities drive the campaign.  [oai_citation:3‡Microsoft Learn](https://learn.microsoft.com/en-us/dynamics365/sales/add-activity-campaign-using-app-marketing-sales?utm_source=chatgpt.com)  
+
+---
+
+### Step 8: Distribute the Campaign Activity
+- Open the campaign activity  
+- Click **Distribute**
+
+This creates tasks for each person in your list.  
+(e.g. 100 contacts = 100 calls or emails)
+
+---
+
+### Step 9: Track Progress
+- Use the timeline to track activity  
+- Monitor responses and engagement  
+
+---
+
+## 5. Gotchas / Common Mistakes
+
+- **No marketing list attached**
+  - Campaign does nothing without an audience
+
+- **Confusing campaign vs activity**
+  - Campaign = plan  
+  - Activity = execution  
+
+- **Too many activities**
+  - Keep it simple (1–2 channels to start)
+
+- **Expecting instant results**
+  - Large campaigns can take time to process  [oai_citation:4‡Microsoft Learn](https://learn.microsoft.com/is-is/dynamics365/sales/create-edit-campaign-using-app-marketing-sales?utm_source=chatgpt.com)  
+
+- **Missing data (e.g. no email)**
+  - People without required info won’t be included in activities  [oai_citation:5‡Microsoft Learn](https://learn.microsoft.com/en-us/dynamics365/sales/add-activity-campaign-using-app-marketing-sales?utm_source=chatgpt.com)  
+
+---
+
+## 6. Summary
+
+- A campaign organises your outreach  
+- It connects audience, actions, and results  
+- You:
+  1. Create the campaign  
+  2. Add a marketing list  
+  3. Add activities  
+  4. Distribute and track  
+
+**You should now be able to:**
+- Set up a campaign  
+- Target the right audience  
+- Run simple outreach activities  
+
+---
+
+## 7. Simple Real-World Example
+
+### Scenario: Promote a new product to existing customers
+
+You want to contact customers about a new offering.
+
+---
+
+### What you do:
+
+1. Create campaign:  
+   - *“New Product Launch – Existing Customers”*
+
+2. Add marketing list:  
+   - All active customers  
+
+3. Add activities:
+   - Email announcement  
+   - Follow-up call task  
+
+4. Distribute:
+   - System creates tasks for each customer  
+
+---
+
+### Result
+
+- Every customer gets contacted  
+- Sales team has clear tasks  
+- You can track:
+  - Who responded  
+  - What worked  
+  - Total effort and cost  
+
+---
+
+### Bottom line
+
+A campaign turns “we should reach out” into a structured, trackable process.
