@@ -35,10 +35,9 @@ With campaigns, everything sits in one place: audience, actions, and results.  [
 | Transactional Email | An email that is required in order to perform a function. Such as a thank you email after an event, or an invoice |
 | Marketing Email | An email such as one sent from the Marketing Team promoting a product or service, or a Sales Play |
 | Consent | A Contact who has given Norican their permission to send Marketing emails |
-| Implied Consent | You belive that the person would genuinly be interested in a marketing email based off your conservations |
-| Channel | How you contact people (email, phone, etc.) |
-| Budget | Planned cost of the campaign |
-| Response Rate | How many people engage or reply |
+| Implied Consent | A weak form of consent based on assumption or behaviour |
+| Legitimate interest  | A legal basis for processing under General Data Protection Regulation
+ |
 
 **Important:**  
 - A **campaign = the container**  
