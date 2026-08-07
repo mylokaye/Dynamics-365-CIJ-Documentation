@@ -1,4 +1,4 @@
-# Dynamics 365 Customer Insights Forms Documentation
+# Form Documentation for Dynamics 365
 
 Comprehensive documentation for creating, customizing, and managing forms in Dynamics 365 Customer Insights - Journeys.
 
