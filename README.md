@@ -1,3 +1,5 @@
+![Form Documentation](https://repository-images.githubusercontent.com/1092851749/7bea96d6-20ce-4818-a13f-c14235874e10)
+
 # Form Documentation for Dynamics 365
 
 Comprehensive documentation for creating, customizing, and managing forms in Dynamics 365 Customer Insights - Journeys.
