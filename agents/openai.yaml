@@ -1,0 +1,4 @@
+interface:
+  display_name: "D365 Customer Insights Forms"
+  short_description: "Build and customize CI Journeys forms"
+  default_prompt: "Use $d365-customer-insights-forms to help me build or customize a Customer Insights - Journeys form."

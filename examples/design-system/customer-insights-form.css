@@ -1,0 +1,350 @@
+:root {
+  --color-bg: #f6f8fb;
+  --color-surface: #ffffff;
+  --color-text: #4a5565;
+  --color-title: #4a5565;
+  --color-label: #101828;
+  --color-muted: #667085;
+  --color-border: #d0d5dd;
+  --color-primary-blue: #0f5bd0;
+  --color-primary-hover: #0a49a7;
+  --color-focus: #7cc4ff;
+  --color-invalid: #d92d20;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --radius: 10px;
+  --font-family: "Inter", Arial, Helvetica, sans-serif;
+  --shadow-elevation-depth-sm: 0 1px 2px rgb(16 24 40 / 6%);
+  --shadow-control: 0 0 0 1px var(--color-border), var(--shadow-elevation-depth-sm);
+  --shadow-control-focus: 0 0 0 1px #001048, 0 0 0 4px var(--color-focus), var(--shadow-elevation-depth-sm);
+  --shadow-control-invalid: 0 0 0 2px var(--color-invalid), var(--shadow-elevation-depth-sm);
+  --shadow-control-invalid-focus: 0 0 0 2px var(--color-invalid), 0 0 0 5px var(--color-focus), var(--shadow-elevation-depth-sm);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 1.43;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+[data-hide="hide"] {
+  display: none !important;
+}
+
+/* Typography only; Dynamics continues to own the section and column layout. */
+[data-editorblocktype="Text"] h1,
+[data-editorblocktype="Text"] h2,
+[data-editorblocktype="Text"] h3,
+[data-editorblocktype="Text"] h4,
+[data-editorblocktype="Text"] h5,
+[data-editorblocktype="Text"] h6 {
+  color: var(--color-title);
+  font-family: var(--font-family);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+[data-editorblocktype="Text"] h1 {
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+}
+
+[data-editorblocktype="Text"] h2 {
+  font-size: 1.5rem;
+}
+
+[data-editorblocktype="Text"] h3 {
+  font-size: 1.25rem;
+}
+
+[data-editorblocktype="Text"] h4,
+[data-editorblocktype="Text"] h5,
+[data-editorblocktype="Text"] h6 {
+  font-size: 1rem;
+}
+
+[data-editorblocktype="Text"] p,
+[data-editorblocktype="Text"] li {
+  color: var(--color-text);
+  font-family: var(--font-family);
+}
+
+/* The final Designer text block is commonly used as a form footer. */
+.marketingForm > div[data-layout] > .wrap-section:last-child [data-editorblocktype="Text"] {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+/* Keep Dynamics field-block padding and sizing. These variables position the
+   floating label inside the control without changing its containing column. */
+.textFormFieldBlock,
+.phoneFormFieldBlock,
+.lookupFormFieldBlock,
+.optionSetFormFieldBlock,
+.dateTimeFormFieldBlock {
+  --field-padding-block: 20px;
+  --field-padding-inline: 30px;
+  position: relative;
+}
+
+table.multi .textFormFieldBlock,
+table.multi .phoneFormFieldBlock,
+table.multi .lookupFormFieldBlock,
+table.multi .optionSetFormFieldBlock,
+table.multi .dateTimeFormFieldBlock {
+  --field-padding-block: 12px;
+  --field-padding-inline: 20px;
+}
+
+.textFormFieldBlock > label,
+.phoneFormFieldBlock > label,
+.lookupFormFieldBlock > label,
+.optionSetFormFieldBlock > label,
+.dateTimeFormFieldBlock > label {
+  position: absolute;
+  top: calc(var(--field-padding-block) + 0.55rem);
+  left: calc(var(--field-padding-inline) + 0.75rem);
+  z-index: 1;
+  width: auto;
+  max-width: calc(100% - (2 * var(--field-padding-inline)) - 1.5rem);
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: var(--color-label);
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  pointer-events: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.textFormFieldBlock:focus-within > label,
+.phoneFormFieldBlock:focus-within > label,
+.lookupFormFieldBlock:focus-within > label,
+.optionSetFormFieldBlock:focus-within > label,
+.dateTimeFormFieldBlock:focus-within > label {
+  color: #001048;
+}
+
+.subtitle:empty {
+  display: none;
+}
+
+.requiredSuffix {
+  color: var(--color-invalid);
+}
+
+.phoneFormFieldBlock .phoneCountryCode {
+  width: 100%;
+  height: auto;
+  flex: none;
+  overflow: visible;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+/* Visual control styling. Width is relative to the Dynamics-managed field block. */
+.marketingForm input:not([type="checkbox"]):not([type="radio"]),
+.marketingForm select,
+.marketingForm textarea {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  min-height: 4.25rem;
+  flex: none;
+  padding: 1.85rem 0.75rem 0.65rem;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: 0;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-control);
+}
+
+.marketingForm select {
+  padding-right: 2.5rem;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem top 2rem;
+  background-size: 1rem;
+}
+
+.marketingForm textarea {
+  min-height: 7.5rem;
+  line-height: 1.45;
+  resize: vertical;
+  scroll-padding-top: 1.85rem;
+}
+
+.marketingForm input::placeholder,
+.marketingForm textarea::placeholder {
+  color: var(--color-muted);
+  opacity: 1;
+}
+
+.marketingForm input:not([type="checkbox"]):not([type="radio"]):focus,
+.marketingForm select:focus,
+.marketingForm textarea:focus {
+  outline: none;
+  box-shadow: var(--shadow-control-focus);
+}
+
+/* Use native browser validation after the user interacts with a control. */
+.marketingForm input:not([type="checkbox"]):not([type="radio"]):user-invalid,
+.marketingForm select:user-invalid,
+.marketingForm textarea:user-invalid {
+  box-shadow: var(--shadow-control-invalid);
+}
+
+.marketingForm input:not([type="checkbox"]):not([type="radio"]):user-invalid:focus,
+.marketingForm select:user-invalid:focus,
+.marketingForm textarea:user-invalid:focus {
+  box-shadow: var(--shadow-control-invalid-focus);
+}
+
+.multiOptionSetFormFieldBlock,
+.twoOptionFormFieldBlock {
+  color: var(--color-label);
+}
+
+.multiOptionSetFormFieldBlock > label,
+.twoOptionFormFieldBlock > label {
+  margin-bottom: var(--space-sm);
+  color: var(--color-label);
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.marketingForm .multiOptionSetFormFieldBlock fieldset {
+  display: grid;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  flex: none;
+  gap: var(--space-sm);
+  margin: 0;
+  padding: var(--space-md);
+  border: 0;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-control);
+}
+
+.marketingForm .multiOptionSetFormFieldBlock fieldset > div,
+.marketingForm .twoOptionFormFieldBlock .radiobuttons > div,
+.marketingForm .consentBlock > div {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.marketingForm .twoOptionFormFieldBlock div.radiobuttons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-sm);
+  margin: 0;
+}
+
+.marketingForm .twoOptionFormFieldBlock .radiobuttons > div {
+  box-sizing: border-box;
+  min-height: 2.75rem;
+  padding: var(--space-sm) 0.75rem;
+  align-items: center;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-control);
+}
+
+.marketingForm .multiOptionSetFormFieldBlock input[type="checkbox"],
+.marketingForm .twoOptionFormFieldBlock input[type="radio"],
+.marketingForm .consentBlock input[type="checkbox"] {
+  flex: 0 0 auto;
+  width: 1rem;
+  height: 1rem;
+  margin: 0.15rem 0 0;
+  accent-color: var(--color-primary-blue);
+}
+
+.marketingForm .twoOptionFormFieldBlock input[type="radio"] {
+  margin-top: 0;
+}
+
+.marketingForm .multiOptionSetFormFieldBlock label,
+.marketingForm .twoOptionFormFieldBlock .radiobuttons label,
+.marketingForm .consentBlock label {
+  color: var(--color-text);
+  font-family: var(--font-family);
+  cursor: pointer;
+}
+
+.marketingForm .consentBlock label p {
+  margin: 0;
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.43;
+}
+
+.submitButtonWrapper {
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  margin: 10px 0;
+}
+
+.marketingForm .submitButton {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 50px;
+  padding: 0 0.75rem;
+  color: var(--color-surface);
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 16px;
+  background: var(--color-primary-blue);
+  border: 0;
+  border-radius: var(--radius);
+  box-shadow: 0 0 0 1px var(--color-primary-blue), var(--shadow-elevation-depth-sm);
+  cursor: pointer;
+}
+
+.marketingForm .submitButton:hover {
+  background: var(--color-primary-hover);
+}
+
+.marketingForm .submitButton:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 1px var(--color-primary-blue), 0 0 0 4px var(--color-focus), var(--shadow-elevation-depth-sm);
+}
+
+.marketingForm a {
+  color: var(--color-primary-blue);
+}
+
+@media (max-width: 47.999rem) {
+  .marketingForm input:not([type="checkbox"]):not([type="radio"]),
+  .marketingForm select,
+  .marketingForm textarea {
+    font-size: 16px;
+  }
+
+  .marketingForm .twoOptionFormFieldBlock div.radiobuttons {
+    grid-template-columns: 1fr;
+  }
+}
