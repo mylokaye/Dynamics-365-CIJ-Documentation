@@ -1,4 +1,4 @@
-# D365 Customer Insights Forms Skill
+# Dynamics 365 - Customer Insights Forms Skill
 
 > **Release status: Alpha / pre-development**
 >
