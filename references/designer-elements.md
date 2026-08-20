@@ -21,17 +21,15 @@ Designer elements have a `data-editorblocktype` attribute. Its value identifies 
 | Divider | Common design element | `Divider` | |
 | Button | Common design element | `Button` | |
 | Content block | Common design element | `Content` | Also has `data-block-datatype="text"` or `data-block-datatype="image"`. |
-| Marketing page | Email | `Marketing Page` | |
-| Event | Email | `Event` | |
-| Survey | Email | `Survey` | |
-| Form | Form | `FormBlock` | |
-| Field | Form content | `Field-<field-name>` | Example: `Field-email`. |
+| Field | Form content | `Field-<field-name>` in the generic Designer reference; published form exports may use type-specific values such as `TextFormField` or `PhoneFormField` | Confirm the value against the published form before selecting or modifying a field. |
 | Subscription list | Form content | `SubscriptionListBlock` | |
 | Forward to a friend | Form content | `ForwardToFriendBlock` | |
 | Do-not-email or Remember-me | Form content | `Field-checkbox` | Both create checkboxes; distinguish them through their internal settings. |
-| Submit button | Form content | `SubmitButtonBlock` | |
-| Reset button | Form content | `ResetButtonBlock` | |
-| CAPTCHA | Form content | `CaptchaBlock` | |
+| Consent | Form content | `Consent` in the included form exports | Confirm the compliance and purpose settings against the form. |
+| Topic | Form content | `Topic` in the included form exports | Confirm the compliance profile and topic settings against the form. |
+| Submit button | Form content | `SubmitButton` in the included form exports; some generic documentation lists `SubmitButtonBlock` | Confirm the value against the published form. |
+| Reset button | Form content | `ResetButton` in form exports; some generic documentation lists `ResetButtonBlock` | Confirm the value against the published form. |
+| CAPTCHA | Form content | `Captcha` in form exports; some generic documentation lists `CaptchaBlock` | Confirm the value against the published form. |
 
 ## Editing rule
 

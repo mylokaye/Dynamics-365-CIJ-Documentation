@@ -21,6 +21,7 @@ The Alpha currently helps an agent:
 - Work with script-hosted forms, dynamic rendering, React embedding, and lookup fields.
 - Add scoped CSS and event-driven JavaScript without relying on inline event attributes.
 - Customize validation, submission feedback, redirects, consent controls, and common form fields.
+- Embed the required Manrope font in a form with system and generic fallbacks.
 - Check changing platform behavior against official Microsoft Learn documentation.
 
 The core agent instructions are in [`SKILL.md`](SKILL.md). Detailed material is loaded from `references/` only when relevant.
@@ -29,13 +30,18 @@ The core agent instructions are in [`SKILL.md`](SKILL.md). Detailed material is 
 
 ```text
 .
+├── CHANGELOG.md
 ├── SKILL.md
 ├── agents/
 │   └── openai.yaml
 ├── references/
+│   ├── custom-attributes.md
+│   ├── custom-fonts.md
 │   ├── custom-javascript.md
 │   ├── designer-elements.md
 │   ├── embed-and-client-api.md
+│   ├── form-management.md
+│   ├── form-structure.md
 │   └── styling-and-submission-feedback.md
 └── examples/
     ├── contact/
@@ -56,7 +62,7 @@ The core agent instructions are in [`SKILL.md`](SKILL.md). Detailed material is 
 | `minimal.html` | Styling removed while preserving form structure and metadata | Lead only; reference use |
 | `brand.html` | Dynamics default form with an additional visual-only brand override | Lead only; experimental |
 
-The branded form must be based on the Dynamics default export, not the minimal form. Dynamics' own stylesheet and inline layout values remain authoritative; the brand stylesheet should change visual presentation without taking ownership of sections, columns, widths, or flex layout.
+The branded form must be based on the Dynamics default export, not the minimal form. Dynamics' own stylesheet and inline layout values remain authoritative; the brand stylesheet should change visual presentation without taking ownership of sections, columns, widths, or flex layout. The design-system CSS embeds the required Manrope font and applies it to the branded form.
 
 ## Known issues and limitations
 
@@ -97,10 +103,12 @@ The branded form must be based on the Dynamics default export, not the minimal f
 
 - [Microsoft Learn MCP Server](https://learn.microsoft.com/en-us/training/support/mcp)
 - [Extend Customer Insights - Journeys forms using code](https://learn.microsoft.com/dynamics365/customer-insights/journeys/developer/realtime-marketing-form-client-side-extensibility)
+- [Use custom attributes to enable designer features](https://learn.microsoft.com/dynamics365/customer-insights/journeys/custom-template-attributes)
+- [Use custom fonts in Customer Insights - Journeys](https://learn.microsoft.com/dynamics365/customer-insights/journeys/use-custom-fonts)
 - [Manage Customer Insights - Journeys forms](https://learn.microsoft.com/dynamics365/customer-insights/journeys/real-time-marketing-manage-forms)
 
 ## Version
 
-- Repository version: `0.0.1`
+- Repository version: `1.0.0`
 - Release stage: **Alpha / pre-development**
 - Stability: **Unstable; breaking changes expected**

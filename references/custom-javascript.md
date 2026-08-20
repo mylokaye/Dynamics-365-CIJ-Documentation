@@ -6,9 +6,13 @@ Use the form HTML editor only when a Designer option cannot meet the need: open 
 
 Attach behavior with `addEventListener` instead:
 
+The example assumes the form markup is already present when `DOMContentLoaded` fires. For script-hosted or dynamically rendered forms, use the relevant rendered-form lifecycle event described below instead.
+
 ```js
 document.addEventListener("DOMContentLoaded", () => {
-  const button = document.querySelector(".submit-button");
+  const button = document.querySelector(
+    'form.marketingForm [data-editorblocktype="SubmitButton"] button[type="submit"]'
+  );
   button?.addEventListener("click", () => {
     // Add narrowly scoped behavior.
   });

@@ -9,6 +9,10 @@ Help users make safe, maintainable changes to Customer Insights - Journeys marke
 
 ## Choose the reference
 
+- For the HTML hierarchy, section/container layout, reusable block shapes, or structural review, read [references/form-structure.md](references/form-structure.md).
+- For form settings, field constraints, lookup privacy, consent, publishing, or validation, read [references/form-management.md](references/form-management.md).
+- For Designer metadata, containers, protected elements, and style-setting attributes, read [references/custom-attributes.md](references/custom-attributes.md).
+- For custom fonts, fallback stacks, and typography testing, read [references/custom-fonts.md](references/custom-fonts.md).
 - For HTML Designer blocks or locked elements, read [references/designer-elements.md](references/designer-elements.md).
 - For standard embeds, lifecycle events, dynamic rendering, React, or lookup fields, read [references/embed-and-client-api.md](references/embed-and-client-api.md).
 - For confirmation messages, submission icons, redirects, and CSS, read [references/styling-and-submission-feedback.md](references/styling-and-submission-feedback.md).
