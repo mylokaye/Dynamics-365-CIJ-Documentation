@@ -4,7 +4,20 @@ All material changes to the D365 Customer Insights - Journeys Forms skill should
 
 ## [Unreleased]
 
-- Add material changes here before the next version is released.
+Add material changes here before the next version is released.
+
+## [1.0.1] - 2026-08-20
+
+### Added
+
+- Added form-prefill, unmapped-field, and submitted-value guidance focused on generated form markup and form integrations, excluding CRM schema and role setup.
+- Added public-form security and operations guidance covering reCAPTCHA, HIP captcha removal, client-side security boundaries, tracking privacy, service-protection limits, and `429` throttling.
+- Added Dynamics form-editor instructions for uploading custom fonts and applying them through Theme text styles.
+
+### Changed
+
+- Updated README scope and official-source links for the new references.
+- Clarified that Manrope is a project font choice rather than a universal Dynamics platform requirement, while retaining the existing fallback and testing guidance.
 
 ## [1.0.0] - 2026-08-20
 

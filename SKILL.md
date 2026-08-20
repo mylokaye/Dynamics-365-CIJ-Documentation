@@ -11,6 +11,8 @@ Help users make safe, maintainable changes to Customer Insights - Journeys marke
 
 - For the HTML hierarchy, section/container layout, reusable block shapes, or structural review, read [references/form-structure.md](references/form-structure.md).
 - For form settings, field constraints, lookup privacy, consent, publishing, or validation, read [references/form-management.md](references/form-management.md).
+- For form prefill, unmapped fields, or using submitted values in downstream form-triggered behavior, read [references/form-prefill-and-submitted-values.md](references/form-prefill-and-submitted-values.md).
+- For public-form CAPTCHA, security boundaries, tracking privacy, throttling, or service limits, read [references/form-security-and-operations.md](references/form-security-and-operations.md).
 - For Designer metadata, containers, protected elements, and style-setting attributes, read [references/custom-attributes.md](references/custom-attributes.md).
 - For custom fonts, fallback stacks, and typography testing, read [references/custom-fonts.md](references/custom-fonts.md).
 - For HTML Designer blocks or locked elements, read [references/designer-elements.md](references/designer-elements.md).
@@ -24,8 +26,9 @@ Help users make safe, maintainable changes to Customer Insights - Journeys marke
 2. Prefer form settings and standard Designer options before editing HTML, CSS, or JavaScript. Use the built-in post-submission action for standard thank-you and redirect behavior.
 3. Preserve Designer-managed content inside `data-editorblocktype` elements. Make custom behavior event-driven and attach listeners with `addEventListener`.
 4. Use the published form embed code for environment-specific URLs and identifiers; do not invent service URLs, organization IDs, form IDs, or regions.
-5. For platform behavior that could have changed, consult the Microsoft Learn MCP before giving a definitive answer. Distinguish documented behavior from a custom workaround.
-6. Provide a minimal, scoped snippet and a test plan. Include cache-bypass testing where a published form may be served from a CDN.
+5. Treat prefill tokens, hidden fields, unmapped fields, and submitted values as untrusted form data. Never place secrets or authorization decisions in them.
+6. For platform behavior that could have changed, consult the Microsoft Learn MCP before giving a definitive answer. Distinguish documented behavior from a custom workaround.
+7. Provide a minimal, scoped snippet and a test plan. Include cache-bypass testing where a published form may be served from a CDN.
 
 ## Guardrails
 

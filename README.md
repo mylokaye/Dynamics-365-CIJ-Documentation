@@ -20,8 +20,10 @@ The Alpha currently helps an agent:
 - Recognize and preserve Designer-managed HTML and `data-*` attributes.
 - Work with script-hosted forms, dynamic rendering, React embedding, and lookup fields.
 - Add scoped CSS and event-driven JavaScript without relying on inline event attributes.
+- Work with form prefill, unmapped fields, and submitted values without treating CRM setup as form code.
+- Apply public-form bot protection and account for service-protection throttling.
 - Customize validation, submission feedback, redirects, consent controls, and common form fields.
-- Embed the required Manrope font in a form with system and generic fallbacks.
+- Apply custom fonts, including the project's Manrope choice, with system and generic fallbacks.
 - Check changing platform behavior against official Microsoft Learn documentation.
 
 The core agent instructions are in [`SKILL.md`](SKILL.md). Detailed material is loaded from `references/` only when relevant.
@@ -41,6 +43,8 @@ The core agent instructions are in [`SKILL.md`](SKILL.md). Detailed material is 
 │   ├── designer-elements.md
 │   ├── embed-and-client-api.md
 │   ├── form-management.md
+│   ├── form-prefill-and-submitted-values.md
+│   ├── form-security-and-operations.md
 │   ├── form-structure.md
 │   └── styling-and-submission-feedback.md
 └── examples/
@@ -62,7 +66,7 @@ The core agent instructions are in [`SKILL.md`](SKILL.md). Detailed material is 
 | `minimal.html` | Styling removed while preserving form structure and metadata | Lead only; reference use |
 | `brand.html` | Dynamics default form with an additional visual-only brand override | Lead only; experimental |
 
-The branded form must be based on the Dynamics default export, not the minimal form. Dynamics' own stylesheet and inline layout values remain authoritative; the brand stylesheet should change visual presentation without taking ownership of sections, columns, widths, or flex layout. The design-system CSS embeds the required Manrope font and applies it to the branded form.
+The branded form must be based on the Dynamics default export, not the minimal form. Dynamics' own stylesheet and inline layout values remain authoritative; the brand stylesheet should change visual presentation without taking ownership of sections, columns, widths, or flex layout. The design-system CSS uses the project's Manrope font choice and applies it to the branded form.
 
 ## Known issues and limitations
 
@@ -106,9 +110,13 @@ The branded form must be based on the Dynamics default export, not the minimal f
 - [Use custom attributes to enable designer features](https://learn.microsoft.com/dynamics365/customer-insights/journeys/custom-template-attributes)
 - [Use custom fonts in Customer Insights - Journeys](https://learn.microsoft.com/dynamics365/customer-insights/journeys/use-custom-fonts)
 - [Manage Customer Insights - Journeys forms](https://learn.microsoft.com/dynamics365/customer-insights/journeys/real-time-marketing-manage-forms)
+- [Prefill values for forms and event registration](https://learn.microsoft.com/dynamics365/customer-insights/journeys/real-time-marketing-form-prefill)
+- [Create unmapped fields for marketing forms](https://learn.microsoft.com/dynamics365/customer-insights/journeys/real-time-marketing-forms-custom-fields)
+- [Use submitted values from forms](https://learn.microsoft.com/dynamics365/customer-insights/journeys/real-time-marketing-form-submitted-values)
+- [Forms security and privacy](https://learn.microsoft.com/dynamics365/customer-insights/journeys/real-time-marketing-form-security-privacy)
 
 ## Version
 
-- Repository version: `1.0.0`
+- Repository version: `1.0.1`
 - Release stage: **Alpha / pre-development**
 - Stability: **Unstable; breaking changes expected**
