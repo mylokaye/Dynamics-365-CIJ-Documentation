@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html data-template-id="4c65bec8-4b46-ed11-bba2-000d3a8d107a"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://go.microsoft.com/fwlink/?linkid=2224838" data-comment="Form extensibility documentation" rel="author">
+    <title>Marketing Form</title>
+    <meta name="referrer" content="never">
+    <meta type="xrm/designer/setting" name="type" value="marketing-designer-content-editor-document">
+    <meta type="xrm/designer/setting" name="layout-editable" value="marketing-designer-layout-editable">
+    <meta type="xrm/designer/setting" name="layout-max-width" value="600px" datatype="text" label="Layout max width">
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: #1f2937;
+        background: #fff;
+        --d365-layout-width: 600px;
+        --card-padding-inline: clamp(1.5rem, 5vw, 2.5rem);
+        --card-border-width: 1px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 2rem 1rem;
+        display: grid;
+        place-items: center;
+      }
+
+      .form-card {
+        /* D365's 600px layout width is the inner content width. */
+        width: min(
+          100%,
+          calc(
+            var(--d365-layout-width) + var(--card-padding-inline) + var(--card-padding-inline) +
+              var(--card-border-width) + var(--card-border-width)
+          )
+        );
+        padding: var(--card-padding-inline);
+        background: #fff;
+        border: var(--card-border-width) solid #dbe3ec;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgb(31 41 55 / 8%);
+      }
+
+      [data-editorblocktype="Text"] h1 {
+        margin: 0 0 0.5rem;
+        color: #111827;
+        font-size: clamp(1.6rem, 4vw, 2rem);
+      }
+
+      [data-editorblocktype="Text"] p {
+        margin: 0 0 1.5rem;
+        color: #667085;
+      }
+
+      .form-fields {
+        display: grid;
+        gap: 16px;
+      }
+
+      .form-fields > .wrap-section:first-child {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .columnContainer {
+        min-width: 0;
+        
+      }
+
+      .textFormFieldBlock {
+        display: grid;
+        gap: 0.45rem;
+      }
+
+      .textFormFieldBlock label {
+        color: #344054;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .textFormFieldBlock input {
+        width: 100%;
+        min-height: 2.75rem;
+        padding: 0.7rem 0.8rem;
+        color: inherit;
+        background: #fff;
+        border: 1px solid #cbd5e1;
+        border-radius: 7px;
+        font: inherit;
+      }
+
+      .textFormFieldBlock input:focus {
+        outline: 3px solid rgb(59 130 246 / 25%);
+        border-color: #2563eb;
+      }
+
+      .textFormFieldBlock input:user-invalid {
+        border-color: #d92d20;
+      }
+
+      .submitButtonWrapper {
+        margin-top: 1.25rem;
+      }
+
+      .submitButton {
+        width: 100%;
+        min-height: 2.75rem;
+        padding: 0.7rem 1rem;
+        color: #fff;
+        background: #2563eb;
+        border: 0;
+        border-radius: 7px;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .submitButton:hover {
+        background: #1d4ed8;
+      }
+
+      .submitButton:focus-visible {
+        outline: 3px solid rgb(59 130 246 / 35%);
+        outline-offset: 2px;
+      }
+
+      .form-status {
+        margin: 1rem 0 0;
+        padding: 0.75rem 1rem;
+        border-radius: 7px;
+      }
+
+      .form-status--success {
+        color: #166534;
+        background: #f0fdf4;
+      }
+
+      @media (max-width: 480px) {
+        .form-fields > .wrap-section:first-child {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="form-card">
+      <!-- Standalone demo markup. Use published Designer markup for a real D365 form. -->
+      <form class="marketingForm" aria-label="Basic contact form" data-demo-form="">
+        <div data-layout="true" data-layout-version="v3" data-layout-maxwidth="600px" property-reference="data-layout-maxwidth:@layout-max-width" style="">
+          
+
+          <div class="form-fields">
+            <div class="wrap-section" data-section="true" style="display: flex; flex: 1 0 0%; border-style: none; border-color: rgb(0, 0, 0); border-width: 1px; margin: 0px; padding: 0px; border-radius: 0px;"><div class="columnContainer" data-container="true" data-container-width="100" style="display: flex; min-width: 5px; width: 580px; flex-direction: column; padding: 10px; float: left;   word-wrap: break-word; word-break: break-word;   word-wrap: break-word; word-break: break-word; flex: 0 0 580px;" id="container9c22e4a47437781787215504432"><div data-editorblocktype="Text">
+            <h1>Contact us</h1>
+            <p>Enter your details below and we’ll be in touch.</p>
+          </div></div></div><div class="wrap-section" data-section="true" style="display: flex; flex: 1 0 0%; border-style: none; border-color: rgb(0, 0, 0); border-width: 1px; margin: 0px; padding: 0px; border-radius: 0px;"><div class="columnContainer" data-container="true" data-container-width="50.00" style="display: flex; min-width: 5px; width: 280px; flex-direction: column; padding: 10px; float: left;   word-wrap: break-word; word-break: break-word;   word-wrap: break-word; word-break: break-word; flex: 0 0 280px;" id="container36f3d448ec58281787215523430"><div class="textFormFieldBlock" data-editorblocktype="TextFormField" data-targetproperty="firstname" data-prefill="false">
+                  <label for="firstname">First name</label>
+                  <input id="firstname" name="firstname" type="text" autocomplete="given-name" required="required">
+                </div></div><div class="columnContainer" data-container="true" data-container-width="50.00" style="display: flex; min-width: 5px; width: 280px; flex-direction: column; padding: 10px; float: left;   word-wrap: break-word; word-break: break-word;   word-wrap: break-word; word-break: break-word; flex: 0 0 280px;" id="container2e8dd62e4edc181787215527960"><div class="textFormFieldBlock" data-editorblocktype="TextFormField" data-targetproperty="lastname" data-prefill="false" data-required="required">
+                  <label for="lastname">Last name</label>
+                  <input id="lastname" name="lastname" type="text" autocomplete="family-name" required="required">
+                </div></div></div><div class="wrap-section" data-section="true" style="display: flex; flex: 1 0 0%; border-style: none; border-color: rgb(0, 0, 0); border-width: 1px; margin: 0px; padding: 0px; border-radius: 0px;"><div class="columnContainer" data-container="true" data-container-width="100" style="display: flex; min-width: 5px; width: 580px; flex-direction: column; padding: 10px; float: left;   word-wrap: break-word; word-break: break-word;  word-wrap: break-word; word-break: break-word; flex: 0 0 580px;" id="containereaba0f6a3b7ec1787215551158"><div class="textFormFieldBlock" data-editorblocktype="TextFormField" data-targetproperty="emailaddress1" data-prefill="false" data-required="required">
+                  <label for="emailaddress1">Email</label>
+                  <input id="emailaddress1" name="emailaddress1" type="email" autocomplete="email" required="required">
+                </div></div></div><div class="wrap-section" data-section="true" style="display: flex; flex: 1 0 0%; border-style: none; border-color: rgb(0, 0, 0); border-width: 1px; margin: 0px; padding: 0px; border-radius: 0px;"><div class="columnContainer" data-container="true" data-container-width="100" style="display: flex; min-width: 5px; width: 600px; flex-direction: column; float: left;  word-wrap: break-word; word-break: break-word; word-wrap: break-word; word-break: break-word; flex: 0 0 600px; background-color: rgba(0, 0, 0, 0); vertical-align: baseline;" id="container296fa845a7e7d81787215567297"><div data-editorblocktype="SubmitButton" class="submitButtonWrapper" align="center" style="text-align: center;">
+                  <button class="submitButton" type="submit" style="margin-left: auto; margin-right: auto; height: 48px; width: 540px; box-sizing: border-box; display: table-cell; line-height: normal; padding: 0px 50px; vertical-align: middle; text-align: center; background-color: rgb(29, 78, 216);" aria-label="Submit"><span style="font-family: system-ui, -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;">Submit</span></button>
+                </div></div></div>
+
+            
+
+            <div class="wrap-section" data-section="true" style="display: flex; flex: 1 0 0%; border-style: none; border-color: rgb(0, 0, 0); border-width: 1px; margin: 0px; padding: 0px; border-radius: 0px;">
+              
+            <div class="columnContainer" data-container="true" data-container-width="100" id="containere0d3ad8b3635c1787215162242" style="width: 600px; flex: 0 0 600px;">
+                
+              </div></div>
+          </div>
+
+          <p class="form-status form-status--success" data-form-status="" role="status" hidden=""></p>
+        </div>
+      </form>
+    </main>
+
+    <script>
+      const form = document.querySelector("[data-demo-form]");
+      const status = document.querySelector("[data-form-status]");
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        const firstName = form.elements.firstname.value.trim();
+        status.textContent = `Thanks, ${firstName}. Your form was submitted.`;
+        status.hidden = false;
+      });
+    </script>
+  
+</body></html>

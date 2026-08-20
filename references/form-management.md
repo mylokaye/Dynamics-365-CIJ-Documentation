@@ -51,6 +51,8 @@ Before publishing, check for the conditions that commonly block validation:
 - fields required by the matching rule are present;
 - a target audience is selected.
 
+For basic contact or lead forms, treat last name (`lastname`) and email (`emailaddress1`) as required fields. The Designer field block and the native control should both carry their required markers. Do not make either field optional unless the user explicitly requests that change.
+
 Warnings can still indicate missing attributes required to create or update the target record. Treat warnings as part of the release review.
 
 ## Lookup fields

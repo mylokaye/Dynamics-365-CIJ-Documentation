@@ -18,6 +18,9 @@ The skill combines:
 The Alpha currently helps an agent:
 
 - Recognize and preserve Designer-managed HTML and `data-*` attributes.
+- Understand the published D365 layout-width contract, including generated inline `width` and `flex-basis` values on sections and containers.
+- Apply the standard section, container, column, and field spacing patterns used by the published form markup.
+- Require last name and email fields on basic contact or lead forms.
 - Work with script-hosted forms, dynamic rendering, React embedding, and lookup fields.
 - Add scoped CSS and event-driven JavaScript without relying on inline event attributes.
 - Work with form prefill, unmapped fields, and submitted values without treating CRM setup as form code.
@@ -34,6 +37,7 @@ The core agent instructions are in [`SKILL.md`](SKILL.md). Detailed material is 
 .
 ├── CHANGELOG.md
 ├── SKILL.md
+├── test.html
 ├── agents/
 │   └── openai.yaml
 ├── references/
@@ -68,6 +72,8 @@ The core agent instructions are in [`SKILL.md`](SKILL.md). Detailed material is 
 
 The branded form must be based on the Dynamics default export, not the minimal form. Dynamics' own stylesheet and inline layout values remain authoritative; the brand stylesheet should change visual presentation without taking ownership of sections, columns, widths, or flex layout. The design-system CSS uses the project's Manrope font choice and applies it to the branded form.
 
+The root [`test.html`](test.html) is a basic standalone smoke test. Its outer card budgets for the `600px` inner width used by the Dynamics layout, so it can be used to verify the width budget without treating a local preview as proof that a published form fits.
+
 ## Known issues and limitations
 
 - The design system is an early prototype and has only received limited testing with the included Lead form.
@@ -75,6 +81,8 @@ The branded form must be based on the Dynamics default export, not the minimal f
 - Adding, removing, reordering, or resizing fields has not been tested across all Designer layouts and field types.
 - Dynamics can rewrite HTML, CSS, and inline layout values when a form is saved.
 - The Designer canvas adds editor-specific styles and overlays, so it may differ from the published form.
+- Published Dynamics output can materialize `data-container-width` as fixed inline widths and flex bases. A padded `600px` `border-box` wrapper therefore has less content width than the generated layout and can visibly overflow unless the outer width budget accounts for padding and borders.
+- Generated forms use a white background and preserve the published spacing contract: zero-padded sections, `10px` field/content container padding, `16px` section gaps, `1rem` two-column gaps, and `0.45rem` label/control gaps.
 - Published, standalone, externally embedded, React, and iframe scenarios have not all been verified.
 - Keyboard navigation, screen readers, high-contrast mode, browser zoom, native validation, mobile layouts, and reduced-motion behavior need a full accessibility review.
 - Success, error, loading, redirect, consent, and server-validation states need broader testing.
@@ -87,9 +95,9 @@ The branded form must be based on the Dynamics default export, not the minimal f
 1. Preserve all Dynamics-generated metadata, field attributes, IDs, validation, consent configuration, and Designer `div` structures unless a task explicitly requires changing them.
 2. Keep original default exports unchanged as comparison baselines.
 3. Apply branded styles after the Dynamics stylesheet and avoid overriding structural layout rules.
-4. Treat custom Dynamics CSS selectors as implementation details that require published-form testing.
+4. Treat custom Dynamics CSS selectors and generated inline layout widths as implementation details that require published-form testing.
 5. Verify current platform behavior through the Microsoft Learn MCP before presenting it as definitive.
-6. Test changes in a non-production form and check both the Designer and the published result.
+6. Test changes in a non-production form and check both the Designer and the published result, including computed widths and horizontal overflow.
 7. Remove customer data, organization URLs, form IDs, tracking identifiers, and private asset URLs from shared examples.
 
 ## Planned work

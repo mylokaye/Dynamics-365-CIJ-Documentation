@@ -6,6 +6,17 @@ All material changes to the D365 Customer Insights - Journeys Forms skill should
 
 Add material changes here before the next version is released.
 
+### Added
+
+- Added published-layout width guidance covering Dynamics-generated inline `width` and `flex-basis` values, padded outer wrappers, section expansion, and computed-geometry verification.
+- Added required spacing guidance for sections, containers, columns, field blocks, and basic form field defaults.
+
+### Changed
+
+- Updated the basic `test.html` smoke test to budget for the `600px` inner Dynamics layout width.
+- Updated the README to document standalone-versus-published rendering differences and the new width verification expectations.
+- Updated `test.html` to use a white background, valid last-name markup, and required last-name/email fields.
+
 ## [1.0.1] - 2026-08-20
 
 ### Added
