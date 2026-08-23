@@ -14,7 +14,7 @@ The former HIP captcha was removed from Customer Insights - Journeys in June 202
 
 ## Hosting and security boundaries
 
-- Form submissions are accepted only from domains allowed for external form hosting. This also applies to form capture. A client-side workaround cannot bypass this check.
+- Form submissions are accepted only from domains added to the allowed-domain list with external form hosting enabled. This also applies to form capture. Full email-domain authentication is a separate feature and is not required merely for forms or prefill. A client-side workaround cannot bypass the form-hosting check.
 - Treat every public form field, including hidden and unmapped fields, as attacker-controlled input.
 - Do not put API keys, CAPTCHA secrets, internal record identifiers, or authorization decisions in client-side form code.
 - Keep custom validation narrow and server-backed when it depends on existing records, rate limits, or protected business rules.

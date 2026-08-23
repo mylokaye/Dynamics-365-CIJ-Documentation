@@ -17,7 +17,7 @@ Important behavior:
 - A read-only prefilled field can display known information without allowing the visitor to edit it. Do not treat read-only or prefilled values as a security boundary.
 - A forwarded email link can expose personal information. Tell users not to forward links containing prefilled forms.
 
-The hosting domain must already be authorized for form prefill and external form hosting. Do not work around that requirement with JavaScript or by copying values into query parameters.
+Add the hosting domain to the allowed-domain list and enable external form hosting so forms and prefill can use it. Full email-domain authentication is not required solely for forms or prefill. Do not work around the hosting check with JavaScript or by copying values into query parameters.
 
 ### Consent checkbox behavior
 
@@ -60,4 +60,3 @@ For branching:
 - Do not compare an option-set label such as `Blue` to a numeric stored value such as `1` without checking which property the condition exposes.
 
 For email personalization, submitted values can provide dynamic text or a summary list, including in double opt-in scenarios where a Contact or Lead record may not yet be available. Confirm the current localized-value behavior for unmapped option fields before relying on display labels; platform documentation has changed this behavior over time.
-

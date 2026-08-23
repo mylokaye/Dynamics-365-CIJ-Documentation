@@ -14,6 +14,8 @@ Designer elements have a `data-editorblocktype` attribute. Its value identifies 
 
 ## Element inventory
 
+The generic Microsoft Designer reference spans multiple content surfaces and generations. The table below is an identification aid for inspected source, not a current allow-list for Customer Insights forms. Add fields, consent, topics, reCAPTCHA, and buttons from the target form editor; do not create a block by copying a listed name.
+
 | Design element | Element category | `data-editorblocktype` value | Additional detail |
 | --- | --- | --- | --- |
 | Text | Common design element | `Text` | |
@@ -30,6 +32,8 @@ Designer elements have a `data-editorblocktype` attribute. Its value identifies 
 | Submit button | Form content | `SubmitButton` in the included form exports; some generic documentation lists `SubmitButtonBlock` | Confirm the value against the published form. |
 | Reset button | Form content | `ResetButton` in form exports; some generic documentation lists `ResetButtonBlock` | Confirm the value against the published form. |
 | CAPTCHA | Form content | `Captcha` in form exports; some generic documentation lists `CaptchaBlock` | Confirm the value against the published form. |
+
+Older exports can contain HIP CAPTCHA markup and related styles. HIP CAPTCHA was removed in June 2026 and no longer protects those forms; add the current reCAPTCHA element in the form editor and republish.
 
 ## Editing rule
 

@@ -44,14 +44,15 @@ Use the built-in post-submission redirect whenever it meets the requirement. Use
 
 ```js
 document.addEventListener("d365mkt-afterformsubmit", (event) => {
-  if (!event.detail?.successful) return;
+  const successful = event.detail?.successful ?? event.detail?.Success;
+  if (successful !== true) return;
   window.setTimeout(() => {
     window.location.assign("/thank-you");
   }, 5000);
 });
 ```
 
-Microsoft Learn currently uses both `Success` in its event-detail table and `event.detail.successful` in its sample. Verify the property against the current page before use, because the documentation is internally inconsistent.
+Microsoft Learn currently uses `Success` in its event-detail table and `event.detail.successful` in its sample. The fallback above is a compatibility workaround, not a documented third API. Verify the actual target-environment payload before use.
 
 For published-form checks, allow up to 10 minutes for CDN refresh, or add the `#d365mkt-nocache` cache-bypass parameter to test immediately. Do not share cache-bypass links with customers because they bypass CDN caching and slow page loading. Then test success, validation failure, and mobile layout.
 

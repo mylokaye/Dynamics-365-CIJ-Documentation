@@ -1,101 +1,92 @@
 ---
 name: d365-customer-insights-forms
-description: Build, embed, customize, and troubleshoot Dynamics 365 Customer Insights - Journeys marketing forms. Use when creating a form, identifying Designer elements, applying CSS or JavaScript customizations, handling submission behavior, embedding forms in web or React applications, or validating Customer Insights form API guidance.
+description: Create, convert, embed, customize, and validate Dynamics 365 Customer Insights - Journeys marketing forms. Use for new native forms, migrations of existing HTML forms, Form Capture integrations, published-form troubleshooting, or client-side extensions.
 ---
 
-# D365 Customer Insights Forms
+# D365 Customer Insights forms
 
-Help users make safe, maintainable changes to Customer Insights - Journeys marketing forms. Use the focused references below for implementation work.
+Build forms that Customer Insights - Journeys can validate, publish, and process. A local HTML render is not proof of platform compatibility.
 
-## Choose the reference
+## Choose the supported path
 
-- For the HTML hierarchy, section/container layout, reusable block shapes, or structural review, read [references/form-structure.md](references/form-structure.md).
-- For form settings, field constraints, lookup privacy, consent, publishing, or validation, read [references/form-management.md](references/form-management.md).
-- For form prefill, unmapped fields, or using submitted values in downstream form-triggered behavior, read [references/form-prefill-and-submitted-values.md](references/form-prefill-and-submitted-values.md).
-- For public-form CAPTCHA, security boundaries, tracking privacy, throttling, or service limits, read [references/form-security-and-operations.md](references/form-security-and-operations.md).
-- For Designer metadata, containers, protected elements, and style-setting attributes, read [references/custom-attributes.md](references/custom-attributes.md).
-- For custom fonts, fallback stacks, and typography testing, read [references/custom-fonts.md](references/custom-fonts.md).
-- For HTML Designer blocks or locked elements, read [references/designer-elements.md](references/designer-elements.md).
-- For standard embeds, lifecycle events, dynamic rendering, React, or lookup fields, read [references/embed-and-client-api.md](references/embed-and-client-api.md).
-- For confirmation messages, submission icons, redirects, and CSS, read [references/styling-and-submission-feedback.md](references/styling-and-submission-feedback.md).
-- For custom scripts and progressive disclosure, read [references/custom-javascript.md](references/custom-javascript.md).
+Read [references/build-or-convert.md](references/build-or-convert.md) before creating or converting a form.
 
-## Required generated document shell
+- **New native form:** Create a blank form in Customer Insights - Journeys and use its form editor. This is the default for new work.
+- **Rebuild an existing form as native:** Use a blank form from the target environment, recreate the layout, and add mapped fields, unmapped fields, consent, reCAPTCHA, and Submit through the form editor. Choose this when Customer Insights should own rendering and submission.
+- **Form Capture:** Keep the existing site's form and integrate the generated capture script. Use this only when the existing form has complex logic or must also submit to another system. Read [references/form-capture.md](references/form-capture.md).
+- **Standard embed:** If the site only needs to display a Customer Insights form, create the native form and use the exact embed snippet from **Publish**. Do not convert the host page's form.
 
-Every generated HTML form must include the following Dynamics 365 Customer Insights - Journeys document shell before the form body. Preserve the doctype, template identifier, author link, title, referrer policy, and Designer settings exactly as shown. Do not omit these elements for minimal, standalone, or test forms.
+Do not mix the native loader API and Form Capture API. Do not propose the JavaScript loader API for an iframe-hosted form.
 
-```html
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html data-template-id="4c65bec8-4b46-ed11-bba2-000d3a8d107a">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://go.microsoft.com/fwlink/?linkid=2224838" data-comment="Form extensibility documentation" rel="author">
-    <title>Marketing Form</title>
-    <meta name="referrer" content="never">
-    <meta type="xrm/designer/setting" name="type" value="marketing-designer-content-editor-document">
-    <meta type="xrm/designer/setting" name="layout-editable" value="marketing-designer-layout-editable">
-    <meta type="xrm/designer/setting" name="layout-max-width" value="600px" datatype="text" label="Layout max width">
-  </head>
-```
+## Establish the environment contract
 
-The closing `</head>`, the form markup, and the document closing tags must follow this shell. Do not substitute a different template ID or Designer metadata unless the user supplies an environment-specific published export that requires it.
+Before generating deployable code, establish:
 
-## D365 published layout width contract
+1. form type and target audience: Contact, Lead, Lead & Contact, or event registration;
+2. duplicate-record strategy and every field required by its matching rule;
+3. mapped versus unmapped questions and the actual logical names available to that audience;
+4. compliance profile, purposes, topics, channels, and opt-in behavior;
+5. hosting model and exact allowed external-hosting domain when applicable;
+6. a same-environment native form export, embed snippet, or Form Capture snippet.
 
-Treat `data-layout-maxwidth="600px"` as the inner content width owned by the Dynamics form layout. It is not the total width of a custom card or wrapper around the form.
+Do not invent form IDs, organization IDs, API or CDN hosts, field mappings, generated control IDs, template IDs, compliance IDs, purpose IDs, or topic IDs. If the target-environment artifact is unavailable, produce a clearly labeled candidate or migration plan—not a deployment-ready or compatible form.
 
-Published Designer output can add fixed inline widths and flex bases to containers, for example:
+## Native create workflow
 
-```html
-<div data-container="true" data-container-width="50" style="width: 300px; flex: 0 0 300px;"></div>
-<div data-container="true" data-container-width="100" style="width: 600px; flex: 0 0 600px;"></div>
-```
+1. In Customer Insights - Journeys, create a form under **Channels** > **Forms**, choose a blank form or a target-environment template, confirm the audience, and set the duplicate-record strategy.
+2. Add mapped fields from the selected audience in the form editor. Add questions that must not update Contact or Lead as supported unmapped fields. Do not turn arbitrary hand-authored inputs into mapped fields by guessing `data-*` metadata.
+3. Add and configure consent in the form editor. Add reCAPTCHA to every publicly accessible form. Add a Submit button.
+4. Use Theme and form settings first. Use the HTML editor only for requirements the supported settings cannot meet. Start code work from the current form's stored HTML or a same-environment seed form and preserve generated mappings and metadata.
+5. Run the local preflight checker when HTML is available. Resolve `scripts/validate_form.py` relative to this `SKILL.md`; for example, from the skill directory:
 
-These generated values are structural layout values. Preserve them in a published export and do not assume that `data-container-width` alone applies the corresponding CSS in a standalone page. A section can expand beyond its parent when fixed-width child containers combine with the default `min-width: auto` behavior.
+   ```bash
+   python3 scripts/validate_form.py path/to/form.html --mode native
+   ```
 
-When adding a custom outer card, calculate the width budget explicitly:
+6. In Customer Insights, run **Check content**, resolve blocking errors and relevant warnings, then publish using the generated standalone or JavaScript option.
+7. Verify a published submission, not only rendering. Confirm the submission reaches **Success**, the intended Contact or Lead is created or updated according to the matching rule, and consent records are correct when consent is present.
 
-```text
-outer border-box width = D365 content width + left/right padding + left/right borders
-```
+## Conversion workflow
 
-For example, a `600px` outer element using `box-sizing: border-box`, `40px` left and right padding, and `1px` borders leaves only `518px` for the form content. A published Dynamics section or container still sized to `600px` will then overflow by `82px`. Keep the D365 layout as the width owner, or make the outer wrapper wide enough to contain the full generated layout.
+Inventory the existing form before editing: fields, field types, names, validation, hidden values, consent, CAPTCHA, submission endpoint, redirects, analytics, accessibility, and any non-Dynamics destination.
 
-Do not treat a standalone local render as proof that a published form fits. Verify the published result after Dynamics applies its generated inline styles.
+- Prefer a **native rebuild** when the form can be represented in the Customer Insights editor. Preserve the visual design, but replace existing controls with mapped or unmapped blocks added by the form editor.
+- Prefer **Form Capture** when the original DOM, business logic, or other submission destinations must remain. Start from the generated capture snippet, complete its mappings, and wait for its submission promise before redirecting.
+- Preserve the original server submission only when the requirement explicitly calls for dual submission, and test both destinations independently.
 
-## Required spacing and field defaults
+Never paste environment-specific consent markup from the repository examples into a real form. Configure consent in the target form editor; Form Capture ignores consent-definition changes made only in its code snippet.
 
-Use these spacing patterns consistently for generated forms. Keep container widths derived from the published `data-layout-maxwidth`; do not hard-code example values such as `280px`, `580px`, or `600px` when the layout width changes.
+## Compatibility evidence
 
-- Sections use `display: flex`, `flex: 1 0 0%`, `margin: 0`, and `padding: 0`, with no visible border. Preserve the generated border declarations when present, but keep the effective border style set to `none`.
-- Standard field and content containers use `padding: 10px`, `flex-direction: column`, `min-width: 5px`, `float: left`, and word wrapping (`word-wrap: break-word` and `word-break: break-word`). Full-width field containers also use the `10px` padding.
-- The form-fields layout uses `gap: 16px` between sections.
-- A two-column row uses `gap: 1rem` between its columns.
-- Field blocks use `gap: 0.45rem` between the label and control.
-- Use a white page/form background (`background: #fff`); do not emit an empty or invalid background value.
-- Keep submit-button wrappers centered and preserve any generated no-padding submit-container exception when it is part of the published export.
+Report the strongest level actually verified:
 
-For basic contact or lead forms, last name (`lastname`) and email (`emailaddress1`) are required fields. Mark both the Designer block and native control as required with `data-required="required"` and `required="required"`. Do not silently make either field optional.
+- **Candidate:** HTML or an integration plan exists, but target-environment values are missing.
+- **Locally checked:** the preflight checker and relevant local browser/accessibility checks pass.
+- **Platform accepted:** the target form saves and **Check content** passes in Customer Insights.
+- **Published:** the current version renders through the intended standalone or embed route; external domains are allowed for form hosting.
+- **End-to-end verified:** a unique test submission succeeds and the expected record, submitted values, and consent state are confirmed.
 
-## Workflow
+Do not describe a form as working or Customer Insights-compatible below **Platform accepted**. Do not describe submission behavior as verified below **End-to-end verified**.
 
-1. Start every generated HTML form with the required document shell above, then determine the hosting model: hosted-as-script, dynamic JavaScript rendering, React, or iframe. Do not propose the JavaScript API for iframe-hosted forms.
-2. Prefer form settings and standard Designer options before editing HTML, CSS, or JavaScript. Use the built-in post-submission action for standard thank-you and redirect behavior.
-3. Preserve Designer-managed content inside `data-editorblocktype` elements. Make custom behavior event-driven and attach listeners with `addEventListener`.
-4. Use the published form embed code for environment-specific URLs and identifiers; do not invent service URLs, organization IDs, form IDs, or regions.
-5. Treat prefill tokens, hidden fields, unmapped fields, and submitted values as untrusted form data. Never place secrets or authorization decisions in them.
-6. For platform behavior that could have changed, consult the Microsoft Learn MCP before giving a definitive answer. Distinguish documented behavior from a custom workaround.
-7. Provide a minimal, scoped snippet and a test plan. Include cache-bypass testing where a published form may be served from a CDN.
-8. For custom wrappers, cards, or responsive overrides, verify the published geometry in Chrome: compare the computed widths of the layout, every section and container, and each field/button; confirm that no child right edge exceeds its intended parent and that the document has no unintended horizontal overflow.
+## Coding and security rules
 
-## Guardrails
+- Use the published embed or capture code for environment-specific endpoints and identifiers.
+- Treat prefill tokens, hidden fields, unmapped fields, capture mappings, and submitted values as untrusted input. Never place secrets or authorization decisions in them.
+- Add JavaScript with `addEventListener`; the form editor sanitizes inline event attributes. Use the documented lifecycle events for loader-hosted forms.
+- Prefer the built-in post-submission action. If custom success handling is necessary, account for the documented `Success`/`successful` inconsistency and verify the actual event payload.
+- Scope CSS to the form. Preserve generated field blocks, consent blocks, validation attributes, and inline layout metadata unless a target-environment test proves an override is safe.
+- A domain only needs to be added to allowed domains and enabled for external form hosting; completing email-domain authentication is a separate concern.
+- Use `#d365mkt-nocache` only for testing a newly published standalone version. Do not distribute cache-bypass URLs.
+- For current platform behavior, search Microsoft Learn MCP first and fetch the relevant full page. Distinguish Microsoft-documented behavior, repository fixture conventions, and custom workarounds.
 
-- Before returning generated HTML, verify that the required document shell is present, including the XHTML doctype, `data-template-id`, author link, title, referrer setting, and all three `xrm/designer/setting` metadata elements.
-- Do not give a custom outer wrapper a total width equal to the D365 content width when the wrapper also adds padding or borders; account for the full width budget.
-- Do not override generated container `width`, `flex-basis`, or section sizing merely to make a local preview fit. Confirm the published form's computed geometry and document any intentional structural override.
-- Before returning a basic contact or lead form, confirm that the last-name and email field blocks and their native controls are both marked required.
-- Avoid inline event attributes because the form editor can sanitize them.
-- Do not place secrets, API keys, or customer data in client-side code.
-- Confirm selectors and behavior against the published form; custom CSS classes are implementation details and can change.
-- When source notes disagree about event names or payload properties, prefer current Microsoft Learn documentation and say what was verified.
+## Focused references
+
+- [Build or convert](references/build-or-convert.md): routing, field mapping, required artifacts, and acceptance tests.
+- [Form Capture](references/form-capture.md): generated-script workflow and dual-submit boundaries.
+- [Form structure](references/form-structure.md): native HTML hierarchy, Designer blocks, and published geometry.
+- [Form management](references/form-management.md): audience, matching, validation, consent, and publishing.
+- [Embed and client API](references/embed-and-client-api.md): standard embeds, lifecycle events, dynamic rendering, React, and lookups.
+- [Custom attributes](references/custom-attributes.md): Designer containers, elements, and style settings.
+- [Form prefill and submitted values](references/form-prefill-and-submitted-values.md): prefill, unmapped fields, and downstream values.
+- [Form security and operations](references/form-security-and-operations.md): reCAPTCHA, privacy, throttling, and public-hosting boundaries.
+- [Custom JavaScript](references/custom-javascript.md), [custom fonts](references/custom-fonts.md), [Designer elements](references/designer-elements.md), and [styling and submission feedback](references/styling-and-submission-feedback.md): load only when the request needs them.

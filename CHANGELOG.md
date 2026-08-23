@@ -10,12 +10,17 @@ Add material changes here before the next version is released.
 
 - Added published-layout width guidance covering Dynamics-generated inline `width` and `flex-basis` values, padded outer wrappers, section expansion, and computed-geometry verification.
 - Added required spacing guidance for sections, containers, columns, field blocks, and basic form field defaults.
+- Added explicit native-create, native-rebuild, standard-embed, and Form Capture workflows grounded in current Microsoft Learn guidance.
+- Added compatibility evidence levels and a dependency-free local preflight checker with native-form and Form Capture tests.
 
 ### Changed
 
 - Updated the basic `test.html` smoke test to budget for the `600px` inner Dynamics layout width.
 - Updated the README to document standalone-versus-published rendering differences and the new width verification expectations.
 - Updated `test.html` to use a white background, valid last-name markup, and required last-name/email fields.
+- Reclassified the fixed template shell, 600px layout, spacing, and last-name/email rules as repository fixture conventions rather than universal Customer Insights requirements.
+- Clarified that archival examples contain non-reusable consent placeholders, environment identifiers, and obsolete HIP CAPTCHA styles.
+- Updated lifecycle-event, JavaScript placement, external-hosting, reCAPTCHA, table-less layout, and submission-verification guidance against Microsoft Learn MCP and current Microsoft troubleshooting documentation.
 
 ## [1.0.1] - 2026-08-20
 

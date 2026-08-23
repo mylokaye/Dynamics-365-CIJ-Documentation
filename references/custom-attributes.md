@@ -1,6 +1,6 @@
 # Custom attributes
 
-Use this reference when adding or reviewing HTML metadata that makes a form work with the Customer Insights - Journeys Designer. These attributes are Designer instructions, not general-purpose application hooks. Start from a Designer-generated form and verify current behavior against the official documentation before relying on an attribute in production.
+Use this reference when adding or reviewing HTML metadata that enables Customer Insights - Journeys Designer features. These attributes are Designer instructions, not field mappings or general-purpose application hooks. Start from a target-environment form and verify current behavior against the official documentation before relying on an attribute in production.
 
 Official reference: [Microsoft Learn custom Designer attributes guidance](https://learn.microsoft.com/en-us/dynamics365/customer-insights/journeys/custom-template-attributes).
 
@@ -30,6 +30,8 @@ Place the drag-and-drop marker in the document `<head>`:
 ```
 
 Without this marker, the Designer may use its simplified full-page editing experience instead of exposing containers, Toolbox elements, and element properties.
+
+Microsoft supports pasting externally created HTML into the HTML editor. The imported page can render in the simplified full-page editor, and the meta tag plus supported containers can enable drag-and-drop features. This does not make ordinary `<input>` elements valid mapped Contact or Lead fields. Add mapped and unmapped fields through the form editor.
 
 ## Containers and elements
 
@@ -105,5 +107,6 @@ Keep style settings limited to visual properties. Do not use them to rewrite fie
 
 - Preserve generated attributes and paired container/block boundaries.
 - Do not invent a `data-editorblocktype` value or assume a block is supported because it appears in another product surface.
+- Do not hand-author `data-targetproperty`, consent identifiers, or target-audience metadata to simulate a field mapping.
 - Do not use `data-*` attributes as durable JavaScript hooks when a stable, scoped class or supported lifecycle event is available.
 - Treat custom attributes as implementation details that may be rewritten when the form is saved. Recheck the published form after editing.

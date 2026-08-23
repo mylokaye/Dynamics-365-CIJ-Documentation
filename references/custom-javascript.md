@@ -1,8 +1,10 @@
 # Custom JavaScript
 
+Official references: [manage forms](https://learn.microsoft.com/dynamics365/customer-insights/journeys/real-time-marketing-manage-forms#add-custom-javascript-to-your-form), [client-side extensibility](https://learn.microsoft.com/dynamics365/customer-insights/journeys/developer/realtime-marketing-form-client-side-extensibility), and [form troubleshooting](https://learn.microsoft.com/dynamics365/customer-insights/journeys/real-time-marketing-troubleshooting-forms#the-form-editor-removes-custom-javascript-or-other-code-from-the-html-body).
+
 ## Add scripts safely
 
-Use the form HTML editor only when a Designer option cannot meet the need: open the form editor and select the **HTML** (`</>`) control in the top toolbar. Place custom JavaScript in the HTML `<body>`; scripts placed in other sections can be removed when the form is saved. The editor can wrap scripts in `safe-script` during edit mode and sanitizes inline event attributes such as `onclick` and `onchange`.
+Use the form HTML editor only when a Designer option cannot meet the need: open the form editor and select the **HTML** (`</>`) control in the top toolbar. Current versions support JavaScript in the HTML `<body>` and move head scripts to the body when saving. Versions before `1.1.38813.80` had different placement behavior, so inspect the saved source when maintaining an older environment. The editor may remove unknown code and sanitizes inline event attributes such as `onclick` and `onchange`.
 
 Attach behavior with `addEventListener` instead:
 
@@ -19,11 +21,17 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 ```
 
-## Event-name discrepancy
+## Loader-hosted lifecycle events
 
-One source names `d365mkt-formload`, `d365mkt-beforeformsubmit`, `d365mkt-afterformsubmit`, and `d365mkt-formerror`. The dedicated client-API guidance names a different lifecycle set, including `d365mkt-afterformload`, `d365mkt-formsubmit`, and `d365mkt-afterformsubmit`.
+The current dedicated client API documents:
 
-Do not assume that these names are interchangeable. Before writing an event handler, verify its current availability and payload through Microsoft Learn MCP; then use the documented name consistently.
+- `d365mkt-beforeformload`;
+- `d365mkt-formrender`;
+- `d365mkt-afterformload`;
+- cancelable `d365mkt-formsubmit`;
+- `d365mkt-afterformsubmit`.
+
+Do not substitute similarly named events from older examples. Microsoft currently documents the after-submit Boolean as `Success` in the property table but uses `event.detail.successful` in its sample. Treat this as a documentation inconsistency: check the current page and verify the actual target-environment payload before making success-dependent changes.
 
 ## Progressive field display
 

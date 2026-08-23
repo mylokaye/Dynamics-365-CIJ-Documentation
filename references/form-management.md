@@ -8,6 +8,7 @@ Use this reference for form settings, field constraints, validation, consent beh
 - Published form content is served through a CDN and may take several minutes to refresh.
 - For testing, append `#d365mkt-nocache` to the page URL to bypass the CDN cache. Do not share that cache-bypass URL with customers.
 - Unpublishing removes the form from the CDN, although browser caches may still display stale content.
+- For an external embed, add the exact host to allowed domains and enable external form hosting. Completing email-domain authentication is not required solely for form hosting or prefill.
 
 Test both the Designer result and the published form after changes. Use a non-production form for structural, CSS, JavaScript, consent, and submission tests.
 
@@ -15,7 +16,7 @@ Test both the Designer result and the published form after changes. Use a non-pr
 
 Use built-in settings before custom code where they meet the requirement:
 
-- **Audience** controls whether the form targets leads, contacts, or a combined Lead & Contact audience. Combined audiences require the appropriate attribute mapping.
+- **Audience** controls whether the form targets leads, contacts, or a combined Lead & Contact audience. Field availability, matching rules, and mappings depend on this selection; event registration forms target Contact.
 - **Prefill** fills known values into supported fields. Read-only fields can display a value without allowing edits; validation is skipped for read-only fields.
 - **Web tracking** may add a tracking cookie through the form loader. Treat this as a privacy and consent decision, not merely a technical toggle.
 - **Post submission action** controls the built-in thank-you notification or redirect. Use it instead of custom JavaScript for standard success behavior.
@@ -43,15 +44,17 @@ The source guidance states that File and Customer fields are not supported in fo
 
 Use the Designer's required and validation settings before writing custom validation. If a custom regular expression is needed, test native browser validation, error messaging, keyboard use, and the server-side submission path.
 
-Before publishing, check for the conditions that commonly block validation:
+Before publishing, check the Microsoft-documented conditions that block validation:
 
 - a Submit button is present;
-- every field is linked to an editable attribute;
+- every mapped field is linked to an editable attribute, while submission-only questions use supported unmapped fields added by the form editor;
 - there are no duplicated fields;
 - fields required by the matching rule are present;
 - a target audience is selected.
 
-For basic contact or lead forms, treat last name (`lastname`) and email (`emailaddress1`) as required fields. The Designer field block and the native control should both carry their required markers. Do not make either field optional unless the user explicitly requests that change.
+The form must include every attribute used by the selected matching rule, and those fields should be required. Microsoft's default Contact example uses email, but the actual matching rule is authoritative. Target-table requirements can produce additional warnings, such as a required last name. Do not infer a universal required-field set from this repository's examples.
+
+When a field is required, keep the Designer block's required metadata and the native control's `required` attribute consistent. Use the form editor to configure required state rather than changing only one marker in HTML.
 
 Warnings can still indicate missing attributes required to create or update the target record. Treat warnings as part of the release review.
 
@@ -70,7 +73,7 @@ Use unique display names when a lookup has a default value. If the current clien
 
 ## HTML, CSS, and JavaScript changes
 
-The form editor can rewrite or sanitize HTML when the form is saved. Keep custom JavaScript in the `<body>` and use `addEventListener`; inline handlers such as `onclick` may be removed. Preserve generated Designer structure and use the specialized references:
+The form editor can rewrite or sanitize HTML when the form is saved. Current app versions support JavaScript in the `<body>` and move head scripts there; older versions had different placement behavior. Use `addEventListener`, because inline handlers such as `onclick` are removed, and verify that saved HTML still contains the intended script. Preserve generated Designer structure and use the specialized references:
 
 - [Form structure](form-structure.md) for sections, containers, and blocks.
 - [Custom attributes](custom-attributes.md) for Designer metadata and style settings.

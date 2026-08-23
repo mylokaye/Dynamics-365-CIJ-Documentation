@@ -1,4 +1,4 @@
 interface:
   display_name: "D365 Customer Insights Forms"
-  short_description: "Build and customize CI Journeys forms"
-  default_prompt: "Use $d365-customer-insights-forms to help me build or customize a Customer Insights - Journeys form."
+  short_description: "Create or convert CI Journeys forms"
+  default_prompt: "Use $d365-customer-insights-forms to create or convert a Customer Insights - Journeys form and verify its compatibility."
