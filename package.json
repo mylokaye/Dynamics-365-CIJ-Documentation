@@ -1,0 +1,8 @@
+{
+  "name": "d365-basic-form-preview",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-site.mjs"
+  }
+}
